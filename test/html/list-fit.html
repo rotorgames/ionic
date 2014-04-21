@@ -19,32 +19,26 @@
     </ion-header-bar>
     <ion-content>
       <ion-refresher on-refresh="onRefresh()"></ion-refresher>
-      <div>
-        <div class="item"
-          ng-click="alert(item)"
-          collection-repeat="item in items"
-          collection-item-height="52"
-          collection-item-width="120 + 2*($index % 40)"
-          ng-style="{width: 120 + 2*($index % 40)}">
-          {{item}}
+      <ul class="list">
+        <div 
+          scroll-item-repeat="item in items"
+          scroll-item-size="52">
+          <div class="list">
+          	<a href="#/tab/facts2" class="item item-icon-left" style="" >
+            	<i class="icon ion-person-stalker"></i>
+                Friends
+                <span class="badge badge-assertive">{{item}}</span>
+            </a>
+          </div>
         </div>
-      </div>
+      </ul>
     </ion-content>
   <script>
 function MainCtrl($scope, $ionicScrollDelegate, $timeout) {
   $scope.items = [];
-  for (var i = 0; i < 5000; i++) {
-    $scope.items.push('item '+i);
+  for (var i = 0; i < 3000; i++) {
+    $scope.items.push(i);
   }
-
-  $scope.height = function(n) {
-    return 105 + (n % 40);
-  };
-  $scope.width = function(n) {
-    return 105 + (n % 40);
-  };
-
-  //$scope.alert = alert.bind(window);
 
   $scope.onRefresh = function() {
     $timeout(function() {
@@ -64,5 +58,17 @@ function MainCtrl($scope, $ionicScrollDelegate, $timeout) {
   $scope.scrollBottom = $ionicScrollDelegate.scrollBottom;
 }
   </script>
+  <style>
+.supercard {
+  text-align: center;
+  border: 1px solid #DDD;
+  margin: 0;
+  padding: 0;
+  float: left;
+  line-height: 55px;
+  width: 70px;
+  height: 70px;
+  margin: 8px;
+}
 </body>
 </html>
