@@ -1,0 +1,72 @@
+
+<html ng-app="ionic">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>Sample UL</title>
+
+    <link  href="../../dist/css/ionic.css" rel="stylesheet">
+    <script src="../../dist/js/ionic.bundle.js"></script>
+  </head>
+
+  <body ng-controller="MainCtrl">
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Hi</h1>
+      <a class="button" ng-click="scrollBottom(true)">
+        Bottom
+      </a>
+    </ion-header-bar>
+    <ion-content>
+      <ion-refresher on-refresh="onRefresh()"></ion-refresher>
+      <ul class="list">
+        <div class="list">
+        	<free-scroll data='items' bind='item' length='15'>
+                <a href="#/tab/facts2" class="item item-icon-left" >
+                    <i class="icon ion-person-stalker"></i>
+                    Friends
+                    <span class="badge badge-assertive">{{item.i}}</span>
+                </a>
+        	</free-scroll>
+        </div>
+      </ul>
+    </ion-content>
+  <script>
+function MainCtrl($scope, $ionicScrollDelegate, $timeout) {
+  $scope.items = [];
+  for (var i = 0; i < 3000; i++) {
+    $scope.items.push(i);
+  }
+
+  $scope.onRefresh = function() {
+    $timeout(function() {
+      var len = $scope.items.length;
+      $scope.items.unshift(2999 - $scope.items.length);
+      $scope.items.unshift(2999 - $scope.items.length);
+      $scope.items.unshift(2999 - $scope.items.length);
+      $scope.items.unshift(2999 - $scope.items.length);
+      $scope.items.unshift(2999 - $scope.items.length);
+      $scope.items.unshift(2999 - $scope.items.length);
+      $scope.items.unshift(2999 - $scope.items.length);
+      $scope.items.unshift(2999 - $scope.items.length);
+      $scope.$broadcast('scroll.refreshComplete');
+    }, 1500);
+  };
+
+  $scope.scrollBottom = $ionicScrollDelegate.scrollBottom;
+}
+  </script>
+  <style>
+.supercard {
+  text-align: center;
+  border: 1px solid #DDD;
+  margin: 0;
+  padding: 0;
+  float: left;
+  line-height: 55px;
+  width: 70px;
+  height: 70px;
+  margin: 8px;
+}
+</body>
+</html>
