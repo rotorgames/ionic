@@ -35,7 +35,7 @@
 function MainCtrl($scope, $ionicScrollDelegate, $timeout) {
   $scope.items = [];
   for (var i = 0; i < 3000; i++) {
-    $scope.items.push(i);
+    $scope.items.push({i:i});
   }
 
   $scope.onRefresh = function() {

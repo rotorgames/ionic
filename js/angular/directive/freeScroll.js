@@ -7,6 +7,7 @@ IonicModule
     terminal: true, 
 	require: '^$ionicScroll',
     link: function(scope, element, attr, scrollCtrl) {
+		sc = scrollCtrl;
 			var scrollView = scrollCtrl.scrollView,
 				children = angular.element(element.children()[0]),
 				contentElement = scrollCtrl.$element;
@@ -45,6 +46,9 @@ IonicModule
 				for(var i = 0; i < childrens.length; i++){
 					thisDataSourceItem++;
 					var children = childrens[i];
+					children.style.position = 'absolute';
+					children.style.width = "100%";
+					$freeScroll.setElementPosition(children, scrollHeight);
 					scrollHeight += children.getBoundingClientRect().height;
 				}
 			});
@@ -54,7 +58,7 @@ IonicModule
 				var offset = offsetTop+topElementHeight;
 				if(scrollTop > preScrollTop && scrollTop > offset){
 					offsetTop = offset;
-					$freeScroll.setElementPosition(children[thisElementNumber], scrollHeight);
+					$freeScroll.setElementPosition(childrens[thisElementNumber], scrollHeight);
 					
 					dataItems[thisElementNumber] = dataSource[thisDataSourceItem]; 
 					
@@ -65,7 +69,8 @@ IonicModule
 						thisElementNumber++;
 					}
 					
-					scope.$digest();
+					//scrollCtrl.resize();
+					//scope.$digest();
 					
 				}
 				else

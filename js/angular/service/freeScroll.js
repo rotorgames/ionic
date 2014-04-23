@@ -25,9 +25,9 @@ IonicModule
 		this.prefix = _prefixStyle('transform');
 	}
 	freeScroll.prototype.setElementPosition = function(element, position){
-		console.log(element);
+		kot = element
 		var style = element.style;
-		style[this.prefix] = 'translate(0px, '+position+'px)';
+		style["-webkit-transform"] = 'translate(0px, '+position+'px)';
 	}
 	return new freeScroll;
 });
